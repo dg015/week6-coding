@@ -25,8 +25,8 @@ namespace NodeCanvas.Tasks.Actions {
 			{
 				yield return new WaitForEndOfFrame();
 			}
-
-			
+			signal.value = false;
+			EndAction(true);
 		}
 
 
@@ -35,6 +35,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 			signal.value = true;
+			StartCoroutine(FrameDelay());
 			EndAction(true);
 		}
 
